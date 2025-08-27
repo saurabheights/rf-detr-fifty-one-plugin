@@ -3,7 +3,7 @@
   "url": "https://github.com/saurabheights/rf-detr-fifty-one-plugin",
   "models": [
     {
-      "base_name": "saurabheights/rfdetr-medium-coco-torch",
+      "base_name": "saurabheights/rf-detr-medium",
       "base_filename": "rf-detr-medium.pth",
       "author": "Roboflow",
       "license": "https://github.com/roboflow/rf-detr/blob/develop/LICENSE",
