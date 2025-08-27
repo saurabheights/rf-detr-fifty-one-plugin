@@ -1,0 +1,35 @@
+{
+  "name": "saurabheights/rf-detr-models",
+  "url": "https://github.com/saurabheights/rf-detr-fifty-one-plugin",
+  "models": [
+    {
+      "base_name": "saurabheights/rfdetr-medium-coco-torch",
+      "base_filename": "rf-detr-medium.pth",
+      "author": "Roboflow",
+      "license": "https://github.com/roboflow/rf-detr/blob/develop/LICENSE",
+      "source": "https://github.com/roboflow/rf-detr",
+      "description": "Roboflow RF-DETR medium sized model trained on COCO",
+      "tags": [
+        "detection",
+        "coco",
+        "torch",
+        "detr"
+      ],
+      "size_bytes": 404992918,
+      "date_added": "2025-08-27 15:19:39",
+      "requirements": {
+        "packages": [
+          "torch>=1.13.0",
+          "torchvision>=0.14.0",
+          "rfdetr>=1.2.0"
+        ],
+        "cpu": {
+          "support": true
+        },
+        "gpu": {
+          "support": true
+        }
+      }
+    }
+  ]
+}
