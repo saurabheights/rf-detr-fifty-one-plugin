@@ -4,8 +4,7 @@ Roboflow RF-DETR models.
 
 import eta.core.web as etaw
 
-from fiftyone.operators import types
-import fiftyone.utils.ultralytics as fouu
+from utils.rf_detr_model import RfDetrModel
 
 
 def download_model(model_name, model_path):
@@ -31,12 +30,8 @@ def load_model(model_name, model_path, classes=None):
         a :class:`fiftyone.core.models.Model`
     """
     model_type = MODEL_TYPES[model_name]
-
-    d = dict(model_path=model_path, classes=classes)
-
     if model_type == "detection":
-        config = fouu.FiftyOneYOLODetectionModelConfig(d)
-        return fouu.FiftyOneYOLODetectionModel(config)
+        return RfDetrModel(model_type)
 
     return None
 
