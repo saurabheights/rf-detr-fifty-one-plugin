@@ -25,14 +25,15 @@ class RfDetrModel(Model):
                 "saurabheights/rf-detr-large": RFDETRLarge,
             }
 
-            # TODO - Download to model_path
-            rfdetr_model = model_class[model_name]()
+            rfdetr_model = model_class[model_name](pretrain_weights=model_path)
             logging.info(f"Optimizing model: {model_name} for inference.")
             rfdetr_model.optimize_for_inference()
             logging.info(f"Model: {model_name} optimized for inference.")
             return rfdetr_model
 
         self._model = get_model(model_name)
+        self.threshold = kwargs.get("threshold", 0.5)
+        logging.debug(f"Loading Rf-Detr model {model_name} with Threshold: {self.threshold}")
 
     @property
     def media_type(self):
@@ -70,7 +71,7 @@ def download_model(model_name, model_path):
     etaw.download_file(url, path=model_path)
 
 
-def load_model(model_name, model_path, classes=None):
+def load_model(model_name, model_path, classes=None, **kwargs):
     """Loads the model.
 
     Args:
@@ -83,7 +84,7 @@ def load_model(model_name, model_path, classes=None):
     """
     model_type = MODEL_TYPES[model_name]
     if model_type == "detection":
-        return RfDetrModel(model_name, model_path)
+        return RfDetrModel(model_name, model_path, **kwargs)
 
     return None
 
