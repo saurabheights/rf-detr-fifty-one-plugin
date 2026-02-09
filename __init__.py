@@ -33,7 +33,9 @@ class RfDetrModel(Model):
 
         self._model = get_model(model_name)
         self.threshold = kwargs.get("threshold", 0.5)
-        logging.debug(f"Loading Rf-Detr model {model_name} with Threshold: {self.threshold}")
+        logging.debug(
+            f"Loading Rf-Detr model {model_name} with Threshold: {self.threshold}"
+        )
 
     @property
     def media_type(self):
@@ -41,7 +43,10 @@ class RfDetrModel(Model):
 
     def predict(self, arg):
         h, w, c = arg.shape
-        detections: supervision.Detections = self._model.predict(arg, threshold=0.5)
+
+        detections: supervision.Detections = self._model.predict(
+            arg, threshold=self.threshold
+        )
 
         # Convert detections to FiftyOne format
         fo_detections: fo.Detections = []
@@ -54,7 +59,7 @@ class RfDetrModel(Model):
                 fo.Detection(
                     label=self._model.class_names[class_id.item()],
                     bounding_box=normalized_box,
-                    confidence=confidence.item()
+                    confidence=confidence.item(),
                 )
             )
         return fo.Detections(detections=fo_detections)
