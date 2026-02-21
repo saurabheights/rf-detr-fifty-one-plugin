@@ -1,15 +1,15 @@
-import numpy as np
-from PIL import Image
-
 import fiftyone as fo
 import fiftyone.zoo as foz
+import numpy as np
+from PIL import Image
 from tqdm import tqdm
-
 from utils.rf_detr_model import RfDetrModel
+
 
 def read_rgb_image(path):
     """Utility function that loads an image as an RGB numpy array."""
     return np.asarray(Image.open(path).convert("RGB"))
+
 
 # Load a `Model` instance that processes images
 model = RfDetrModel()
